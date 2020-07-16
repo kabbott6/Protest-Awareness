@@ -6,17 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <TableLayout android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:stretchColumns="1">
+        <TableRow>
+            <ImageView
+                android:id="@+id/red_dot"
+                android:padding="3dip"
+                android:src="@drawable/red_dot_background" />
+            <TextView
+                android:text="@string/red_dot"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
 
-   <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MapsActivity" />-->
+        <TableRow>
+            <TextView
+                android:text=""
+                android:padding="3dip" />
+            <TextView
+                android:text=""
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

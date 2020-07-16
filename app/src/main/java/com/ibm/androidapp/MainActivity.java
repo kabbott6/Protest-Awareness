@@ -14,6 +14,7 @@
 
 package com.ibm.androidapp;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,12 +22,16 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,8 +43,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * An activity that displays a Google map with a marker (pin) to indicate a particular location.
@@ -191,6 +201,8 @@ public class MainActivity extends AppCompatActivity
      */
     // [END_EXCLUDE]
     // [START maps_marker_on_map_ready_add_marker]
+    @SuppressLint("NewApi")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -198,25 +210,41 @@ public class MainActivity extends AppCompatActivity
         String splitBy = ",";
         LatLng curr = null;
         try {
-            InputStream is = getResources().openRawResource(R.raw.stats);
-            InputStreamReader inReader = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(inReader);
+            FileInputStream stream = null;
+            stream = getApplicationContext().openFileInput("stats.csv");
+            InputStreamReader inputreader =
+                    new InputStreamReader(stream, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(inputreader);
             while ((line = br.readLine()) != null) {
                 String[] occurrence = line.split(splitBy);
+                occurrence[0] = occurrence[0].replace("\"", "");
+                occurrence[1] = occurrence[1].replace("\"", "");
+                occurrence[2] = occurrence[2].replace("\"", "");
+                occurrence[3] = occurrence[3].replace("\"", "");
+                if (occurrence.length > 4) {
+                    occurrence[4] = occurrence[4].replace("\"", "");
+                }
                 curr = new LatLng(Double.parseDouble(occurrence[0]), Double.parseDouble(occurrence[1]));
                 MarkerOptions marker = new MarkerOptions()
                         .position(curr)
                         .title(occurrence[2]);
-                if (occurrence[3].equals("food")) {
+                if (occurrence[3].equals("Food")) {
                     marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                } else if (occurrence[3].equals("water")) {
+                } else if (occurrence[3].equals("Water")) {
                     marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                } else if (occurrence[3].equals("medic")) {
+                } else if (occurrence[3].equals("Medic")) {
                     marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                } else if (occurrence[3].equals("warning")) {
+                } else if (occurrence[3].equals("Warning")) {
                     marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 }
-                googleMap.addMarker(marker);
+                Log.d("occurrence[3]: ", occurrence[3]);
+                try {
+                    if ((occurrence.length > 4) && Long.parseLong(occurrence[4]) + 60000 > System.currentTimeMillis()) {
+                        googleMap.addMarker(marker);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

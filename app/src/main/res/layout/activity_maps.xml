@@ -1,8 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativelayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <fragment
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity" />
+
+    <TableLayout android:layout_width="135dp"
+        android:layout_height="100dp"
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:background="@drawable/bluedot"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:text="@string/blue_dot"
+                android:gravity="left"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@color/white_bg"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:background="@drawable/reddot"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:text="@string/red_dot"
+                android:gravity="left"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@color/white_bg"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:background="@drawable/orangedot"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:text="@string/orange_dot"
+                android:gravity="left"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@color/white_bg"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:background="@drawable/greendot"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:text="@string/green_dot"
+                android:gravity="left"
+                android:padding="3dip"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@color/white_bg"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+    </RelativeLayout>
