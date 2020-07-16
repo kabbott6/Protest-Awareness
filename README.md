@@ -1,63 +1,10 @@
-<p align="center">
-    <a href="https://cloud.ibm.com">
-        <img src="https://landscape.cncf.io/logos/ibm-cloud-kcsp.svg" height="100" alt="IBM Cloud">
-    </a>
-</p>
+The Black Lives Matter movement gained huge momentum after the tragic police brutality against George Floyd. As one of the largest worldwide movements for equality, millions flooded the streets in peaceful protest. Protesting is a fundamental right under the first amendment, and it should be completely safe for people to exercise this right. Protestors need access to food, water, and sometimes medical care during the demonstrations. It is a long and hard process for bringing supplies since volunteers need to contact local organizers or search through social media to let people know they're setting up their respective resource. Additionally, the possibility of violent retaliation by the police with tear gas and rubber bullets, as seen in the recent protests, makes the areas as critical information a spots to avoid. Currently, the protestors need to rely on word of mouth or social media for this information, which is either inaccurate or incomplete because people might fear arrest or retaliation. Hence, there is no sophisticated medium of communication for this information spread. 
 
 
-<p align="center">
-    <a href="https://cloud.ibm.com">
-    <img src="https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg" alt="IBM Cloud">
-    </a>
-    <img src="https://img.shields.io/badge/platform-android-lightgrey.svg?style=flat" alt="platform">
-    <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
-</p>
+Our Android Mobile App consolidates all of this information in one place. ProtestVision shows the most pertinent information during a protest. Food, water, medical resources, and unsafe areas are listed through color-coded points on Google Maps for efficiency and ease. Clicking on any of these information points will also give you directions to navigate to them. If you want to add your own information, you can use the form in the app to give its location and a brief description of the information. We developed this app using the IBM Cloud Android mobile app starter kit. It was coded using Java Android in Android Studio by using the Google Maps Javascript API for the Maps display. It was also deployed to the IBM Cloud using Cloud Foundry toolchain.
 
 
-# Create an Android application
-
-> We have applications available for [Node.js Express](https://github.com/IBM/node-express-app), [Go Gin](https://github.com/IBM/go-gin-app), [Python Flask](https://github.com/IBM/python-flask-app), [Python Django](https://github.com/IBM/python-django-app), [Java Spring](https://github.com/IBM/java-spring-app), [Java Liberty](https://github.com/IBM/java-liberty-app), [Swift Kitura](https://github.com/IBM/swift-kitura-app), and [Android](https://github.com/IBM/android-app).
-
-In this sample, you will create an Android application complete with standard best practices. An Android app is a software application running on the Android platform. Because the Android platform is built for mobile devices, a typical Android app is designed for a smartphone or a tablet PC running on the Android OS.
-
-## Steps
-
-You can manage CI/CD [for this application in IBM Cloud](https://cloud.ibm.com/developer/appservice/create-app?navMode=starterkits) or [build it locally](#building-locally) by cloning this repo first.
-
-### Deploying to IBM Cloud
-
-<p align="center">
-    <a href="https://cloud.ibm.com/developer/appservice/create-app?navMode=starterkits">
-    <img src="https://cloud.ibm.com/devops/setup/deploy/button_x2.png" alt="Deploy to IBM Cloud">
-    </a>
-</p>
-
-Use the button above to develop this same application on IBM Cloud. This option will create a CI/CD pipeline, complete with a hosted GitLab project and DevOps toolchain. [IBM Cloud DevOps](https://www.ibm.com/cloud/devops) services provides toolchains as a set of tool integrations that support development, deployment, and operations tasks inside IBM Cloud. 
-
-### Building Locally
-
-To get started building this application locally, you can run the application natively.
-
-#### Native Application Development
-
-- Install the latest [Android Studio](https://developer.android.com/studio) 3.5.3+ version.
-
-To run your application locally:
-
-- Clone the repo locally, and import the project into Android Studio
-
-- Follow the instructions here to run the Android application on an emulator: https://developer.android.com/training/basics/firstapp/running-app
+ProtestVision is the first in its kind to supply such information to protestors. With our app, protestors can find safety and basic essentials quickly, and any pertinent information can reach people outside one's social media circle. It’s easier to spot which is closest to you and get accurate directions to reach the place or stay away from it accordingly. With this app, you can have a voice, be heard, and stay safe. 
 
 
-Your application will be running within your chosen device emulator.
-
-
-## Next Steps
-* Learn more about augmenting your Android applications on IBM Cloud with the [Mobile Programming Guide](https://cloud.ibm.com/docs/mobile?topic=mobile-getting-started).
-* Explore other [sample applications](https://cloud.ibm.com/developer/appservice/starter-kits) on IBM Cloud.
-
-## License
-
-This sample application is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
-
-[Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+Our next steps would be to implement content moderation to handle trolls and other noisy data. This would help in subsiding misinformation.  We also aim to integrate our app with various social media platforms like Facebook, Twitter and Instagram, so that users can input data to the app from any platform. Another form of input for the app would include adding information by clicking on a map or just giving their address. We would also improvise our storage file to use Cloud Storage instead of external storage.
