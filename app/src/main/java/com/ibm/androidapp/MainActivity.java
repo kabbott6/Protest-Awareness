@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity
         LatLng curr = null;
         try {
             FileInputStream stream = null;
-            stream = getApplicationContext().openFileInput("stats.csv");
+            stream = getApplicationContext().openFileInput("info.csv");
             InputStreamReader inputreader =
                     new InputStreamReader(stream, StandardCharsets.UTF_8);
             BufferedReader br = new BufferedReader(inputreader);
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 Log.d("occurrence[3]: ", occurrence[3]);
                 try {
-                    if ((occurrence.length > 4) && Long.parseLong(occurrence[4]) + 60000 > System.currentTimeMillis()) {
+                    if ((occurrence.length > 4) && Long.parseLong(occurrence[4]) + 7200000 > System.currentTimeMillis()) {
                         googleMap.addMarker(marker);
                     }
                 } catch (Exception e) {

@@ -21,6 +21,14 @@
         android:gravity="center"
         />
 
+    <TextView
+        android:id="@+id/latinfo"
+        android:layout_width="200dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white_bg"
+        />
+
 
     <EditText
             android:id="@+id/latitude"

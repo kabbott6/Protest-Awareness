@@ -9,11 +9,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opencsv.CSVWriter;
@@ -68,12 +71,13 @@ public class InputActivity extends AppCompatActivity implements ActivityCompat.O
 //            File csv = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/stats.csv");
 
             // app specific internal storage
-            File csv = new File(getApplicationContext().getFilesDir(), "stats.csv");
+            File csv = new File(getApplicationContext().getFilesDir(), "info.csv");
             try {
                 FileWriter filewriter = new FileWriter(csv, true);
                 CSVWriter csvwriter = new CSVWriter(filewriter);
                 List<String[]> info = new ArrayList<String[]>();
-                info.add(new String[]{lat, lon, descript, category});
+                time = String.valueOf(System.currentTimeMillis());
+                info.add(new String[]{lat, lon, descript, category, time});
                 csvwriter.writeAll(info);
                 csvwriter.close();
             } catch (IOException e) {
@@ -83,7 +87,7 @@ public class InputActivity extends AppCompatActivity implements ActivityCompat.O
             // read the file
             FileInputStream stream = null;
             try {
-                stream = getApplicationContext().openFileInput("stats.csv");
+                stream = getApplicationContext().openFileInput("info.csv");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -118,6 +122,10 @@ public class InputActivity extends AppCompatActivity implements ActivityCompat.O
         longitude = (EditText) findViewById(R.id.longitude);
         description = (EditText) findViewById(R.id.description);
         submit = (Button) findViewById(R.id.submit);
+        TextView link = (TextView) findViewById(R.id.latinfo);
+        String linkText = "Click <a href='https://www.latlong.net/convert-address-to-lat-long.html'>here</a> to convert addresses to latitude and longitude.";
+        link.setText(Html.fromHtml(linkText));
+        link.setMovementMethod(LinkMovementMethod.getInstance());
 
         theCategory.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -155,7 +163,7 @@ public class InputActivity extends AppCompatActivity implements ActivityCompat.O
 //                    File csv = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/stats.csv");
 
                     // app specific internal storage
-                    File csv = new File(getApplicationContext().getFilesDir(), "stats.csv");
+                    File csv = new File(getApplicationContext().getFilesDir(), "info.csv");
                     try {
                         FileWriter filewriter = new FileWriter(csv, true);
                         CSVWriter csvwriter = new CSVWriter(filewriter);
@@ -170,7 +178,7 @@ public class InputActivity extends AppCompatActivity implements ActivityCompat.O
                     // read the file
                     FileInputStream stream = null;
                     try {
-                        stream = getApplicationContext().openFileInput("stats.csv");
+                        stream = getApplicationContext().openFileInput("info.csv");
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
